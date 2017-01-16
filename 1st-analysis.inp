@@ -1,0 +1,22 @@
+TITLE: 
+ regression without normal distribution;
+DATA:	
+  FILE IS unified_migration_portal.dat;
+VARIABLE:	
+  NAMES ARE year inflow pop foreign unempl rinflow rfor country
+     rinfln rforln geo;
+   USEVAR =  unempl rforln small ;
+
+DEFINE:
+small = (rinfln/ (-10));
+
+
+ANALYSIS:
+    TYPE IS GENERAL;
+    ESTIMATOR IS MLR;
+
+MODEL:	
+   small on rforln unempl;
+
+OUTPUT:
+sampstat;
